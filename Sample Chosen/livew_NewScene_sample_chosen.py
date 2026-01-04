@@ -150,7 +150,7 @@ if __name__ == '__main__':
 
     # ---------- TOPSIS ----------
     data_topsis = standard(np.hstack((min2max(distances), std)))
-    score = topsis(data_topsis, np.array([0.05, 0.95]))
+    score = topsis(data_topsis, np.array([0.45, 0.55]))
     rank = rankdata(-score, method='min')
 
     split = int(len(rank) * 0.25)
@@ -159,4 +159,5 @@ if __name__ == '__main__':
     sio.savemat('livew_NewScene_sample_chosen_result.mat', {
         'train_ind': order[:split].reshape(-1, 1),
         'test_ind': order[split:].reshape(-1, 1)
+
     })

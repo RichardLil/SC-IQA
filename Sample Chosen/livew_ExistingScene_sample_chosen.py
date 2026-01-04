@@ -37,14 +37,14 @@ def select_existing_scene_samples():
     ind_train = sio.loadmat('livew_NewScene_sample_chosen_result.mat')['train_ind'][:, 0]
     livew_imgfeature = livew_imgfeature[ind_train]
 
-    koniq10k_imgfeature = sio.loadmat('../ADATABASE/00_koniq_imgfeature_224.mat')['img_feature']
+    koniq10k_imgfeature = sio.loadmat('koniq_imgfeature_224.mat')['img_feature']
 
     livew_imgfeature = livew_imgfeature.reshape(livew_imgfeature.shape[0], -1)
     koniq10k_imgfeature = koniq10k_imgfeature.reshape(koniq10k_imgfeature.shape[0], -1)
 
     sim = livew_imgfeature @ koniq10k_imgfeature.T
 
-    top = np.argsort(-sim, axis=1)[:, :3]
+    top = np.argsort(-sim, axis=1)[:, :3] #depends on the dataset
     train_ind = np.unique(top.reshape(-1), axis=0)
 
     all_idx = np.arange(10073)
@@ -65,8 +65,7 @@ def align_koniq_labels(device):
 
     prs = model.head.data.cpu().numpy()
 
-    # Y = sio.loadmat('koniq10k_data_244.mat')['Y'].T
-    Y = sio.loadmat('../../training/dataset/koniq10k_244_forclip.mat')['Y'].T
+    Y = sio.loadmat('koniq10k_data_244.mat')['Y'].T
 
     Yr = prs[1, 0] - abs(prs[1, 1]) * np.log((5 - Y) / (Y - 1))
     Yalign = (4 / (np.exp((prs[0, 0] - Yr) / np.abs(prs[0, 1])) + 1)) + 1
@@ -92,3 +91,4 @@ if __name__ == '__main__':
     sio.savemat('livew_ExistingScene_alignment.mat', {
         'koniq_Yalign': Yalign
     })
+

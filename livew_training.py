@@ -116,7 +116,7 @@ if __name__ == '__main__':
     Y = alldatas['Y'].transpose(1, 0)
     Y = Y / 25 + 1
     del alldatas
-    all_data = sio.loadmat('livew_NewScene_TOPSIS_result.mat')
+    all_data = sio.loadmat('livew_NewScene_sample_chosen_result.mat')
     ind_train = all_data['train_ind'][:, 0]
     ind_test = all_data['test_ind'][:, 0]
     Xtest = X[ind_test]
@@ -197,4 +197,5 @@ if __name__ == '__main__':
         all_time = end_time - start_time
         print(f"[Total Time]：{all_time}")
     print(f"best test plcc in {best_plcc_epoch} :{best_test_plcc}; best test srcc in {best_srcc_epoch} :{best_test_srcc}")
+
 

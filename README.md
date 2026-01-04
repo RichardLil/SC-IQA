@@ -1,4 +1,4 @@
-# SC-IQA: Few-label blind image quality assessment via samples chosen from new and existing scenes
+# SC-IQA
 This repository provides the official implementation of **Few-label blind image quality assessment via samples chosen from new and existing scenes**  ([Pattern Recognition, 2026](https://doi.org/10.1016/j.patcog.2025.112747)).
 
 <img width="508.5" height="359.25" alt="image" src="https://github.com/user-attachments/assets/814c43a2-2478-44ba-8216-cad0ae983060" />

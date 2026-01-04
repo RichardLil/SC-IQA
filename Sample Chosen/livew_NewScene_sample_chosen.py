@@ -131,7 +131,7 @@ if __name__ == '__main__':
     alldist = np.hstack(distortions)
 
     # ---------- KMeans ----------
-    estimator = KMeans(n_clusters=7, random_state=82)
+    estimator = KMeans(n_clusters=7, random_state=82) #depends on the dataset
     labels = estimator.fit_predict(alldist)
     centroids = estimator.cluster_centers_
     distances = np.linalg.norm(alldist - centroids[labels], axis=1, keepdims=True)
@@ -141,16 +141,16 @@ if __name__ == '__main__':
     model_q2, _ = clip.load("ViT-B/32", device=device)
 
     high = predict_quality(model_q1, loader, ['high', 'low'], device)[:, 0]
-    apply_dropout_to_output_layer(model_q1, 0.5, 0, 93)
+    apply_dropout_to_output_layer(model_q1, 0.5, 0, 93) #depends on the dataset
     high1 = predict_quality(model_q1, loader, ['high', 'low'], device)[:, 0]
-    apply_dropout_to_output_layer(model_q2, 0.5, 1, 93)
+    apply_dropout_to_output_layer(model_q2, 0.5, 1, 93) #depends on the dataset
     high2 = predict_quality(model_q2, loader, ['high', 'low'], device)[:, 0]
 
     std = np.std(np.c_[high, high1, high2], axis=1, keepdims=True)
 
     # ---------- TOPSIS ----------
     data_topsis = standard(np.hstack((min2max(distances), std)))
-    score = topsis(data_topsis, np.array([0.45, 0.55]))
+    score = topsis(data_topsis, np.array([0.45, 0.55])) #depends on the dataset
     rank = rankdata(-score, method='min')
 
     split = int(len(rank) * 0.25)
@@ -161,3 +161,4 @@ if __name__ == '__main__':
         'test_ind': order[split:].reshape(-1, 1)
 
     })
+

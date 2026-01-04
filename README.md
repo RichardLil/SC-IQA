@@ -23,13 +23,10 @@ By running the provided `data_preprocess.py` script, all the above data preproce
 The LIVEW database is used here as an example. After completing the following steps, the selected samples in both the new and existing scenes, as well as the aligned labels, will be obtained and saved in `.mat` format.
 
 ### 1. New Scene
-The indices of samples selected in the new scene can be obtained by running the script `livew_NewScene_sample_chosen.py` in the ***Sample Chosen*** folder.
-This script consists of three components: data distortion distribution, model prediction difficulty, and TOPSIS-based fusion.
+The indices of samples selected in the new scene can be obtained by running the script `livew_NewScene_sample_chosen.py` in the ***Sample Chosen*** folder. This script consists of three components: data distortion distribution, model prediction difficulty, and TOPSIS-based fusion.
 
 ### 2. Existing Scene
-
-The samples selected for the existing scene can be obtained by running the script `livew_ExistingScene_sample_chosen.py` in the ***Sample Chosen*** folder.  
-This script consists of two main components: similarity-based sample selection and label alignment via nonlinear mapping.
+The samples selected for the existing scene can be obtained by running the script `livew_ExistingScene_sample_chosen.py` in the ***Sample Chosen*** folder. This script consists of two main components: similarity-based sample selection and label alignment via nonlinear mapping.
 
 ---
 
